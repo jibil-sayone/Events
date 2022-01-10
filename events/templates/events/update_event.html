@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
+<style>
+  h3{
+    font-family: 'Indie Flower', cursive;
+    font-weight: Bold;
+    color:#0c0a4a;
+    justify: center;
+  }
+	body{
+		background-color:#edc0d0;
+	}
+
+	input{
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+	}
+
+	input::placeholder {
+	  color: #d3d3d3;
+	}
+
+	.submit{
+		background-color:#852ec7;
+	}
+
+	.center-column{
+		width:600px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 10px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+
+
+ .btn-info{
+   background-color:#230e5c;
+ }
+
+
+</style>
+<div class="center-column">
+
+<h3>Please Make Changes In Your Tasks :</h3>
+<form method="POST" action="">
+  {% csrf_token %}
+  {{form}}
+<input class="btn btn-info " type="submit" value="Save" name="Save" >
+<!--  <input class="btn btn-info " type="submit" value="Publish" name="Publish" >-->
+</form>
+
+    {% if task.published == True %}
+    <a></a>
+    {% else %}
+    <form action="{% url 'pay' task.id%}" method="POST">
+        {% csrf_token %}
+      <button type="submit">Publish</button>
+    </form>
+    {% endif %}
+</div>

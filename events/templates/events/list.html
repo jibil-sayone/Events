@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
+<style>
+  h3{
+    font-family: 'Indie Flower', cursive;
+    font-weight: Bold;
+    color:#0c0a4a;
+  }
+	body{
+		background-color:#edc0d0;
+	}
+
+	input{
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+	}
+
+	input::placeholder {
+	  color: #d3d3d3;
+	}
+
+	.submit{
+		background-color:#852ec7;
+	}
+
+	.center-column{
+		width:600px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 10px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+
+	.item-row{
+		background-color:black;
+		margin: 10px;
+		padding: 20px;
+		border-radius: 3px;
+		color: #fff;
+		font-size: 16px;
+		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+	}
+  .b1{
+    background-color:#40c94c!important;
+  }
+ .btn-info{
+   background-color:#230e5c;
+ }
+	.btn-danger{
+		background-color:#99030b;
+		border-color: #e59400;
+	}
+
+</style>
+
+
+<div class="center-column">
+  <div class="container">
+    <h3>Available Events...Have A Great Day Ahead! :)</h3>
+  </div>
+
+  <div class="creation" align="center">
+        <a class="btn btn-sm btn-info" href="{% url 'create_event'%}">Create New Event</a>
+  </div>
+
+    <div class="event-list">
+
+    {% for task in tasks %}
+    <div class="item-row">
+        <span>{{task}}</span>
+        <span>-{{task.start_date}}</span>
+        <a class="btn btn-sm btn-info" href="{% url 'update_event' task.id%}">Update</a>
+
+        {% if task.published == True %}
+        <span>Published</span>
+        {% else %}
+        <a class="btn btn-sm btn-info" href="{% url 'pay' task.id%}">Publish</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+</div>
